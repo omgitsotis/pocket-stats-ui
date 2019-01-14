@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import Layout from './hoc/Layout/Layout';
 import Homepage from './containers/Homepage/Homepage'
 import Auth from './containers/Auth/Auth'
+import * as actions from './store/actions';
 
 class App extends Component {
+  componentDidMount () {
+    this.props.onTryAutoSignup();
+  }
+
   render() {
     let routes = (
       <Switch>
@@ -13,6 +19,15 @@ class App extends Component {
         <Redirect to="/" />
       </Switch>
     )
+
+    if (this.props.isAuthenticated) {
+      routes = (
+        <Switch>
+          <Route path="/" exact component={Homepage} />
+          <Redirect to="/" />
+        </Switch>
+      )
+    }
 
     return (
       <div>
@@ -24,4 +39,16 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.auth.toJS().isAuthed
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onTryAutoSignup: () => dispatch( actions.checkAuthenticated() )
+  };
+};
+
+export default withRouter( connect( mapStateToProps, mapDispatchToProps )( App ) );

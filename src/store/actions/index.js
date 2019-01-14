@@ -1,1 +1,1 @@
-export { getPocketToken } from './auth'
+export { getPocketToken, checkAuthenticated } from './auth'
