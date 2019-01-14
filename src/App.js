@@ -6,6 +6,7 @@ import Layout from './hoc/Layout/Layout';
 import Homepage from './containers/Homepage/Homepage'
 import Auth from './containers/Auth/Auth'
 import * as actions from './store/actions';
+import Spinner from './components/UI/Spinner/Spinner'
 
 class App extends Component {
   componentDidMount () {
@@ -18,7 +19,7 @@ class App extends Component {
         <Route path="/" exact component={Auth} />
         <Redirect to="/" />
       </Switch>
-    )
+    );
 
     if (this.props.isAuthenticated) {
       routes = (
@@ -27,12 +28,12 @@ class App extends Component {
           <Redirect to="/" />
         </Switch>
       )
-    }
+    };
 
     return (
       <div>
         <Layout>
-          {routes}
+          {this.props.loading ? <Spinner /> : routes}
         </Layout>
       </div>
     );
@@ -41,7 +42,8 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.auth.toJS().isAuthed
+    isAuthenticated: state.auth.toJS().isAuthenticated,
+    loading: state.auth.toJS().loading
   };
 };
 

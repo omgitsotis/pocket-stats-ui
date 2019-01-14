@@ -5,7 +5,7 @@ import * as actionTypes from '../actions/actionTypes'
 const initialState = Immutable.fromJS({
   loading: false,
   hasError: false,
-  isAuthed: false,
+  isAuthenticated: false,
   link: ''
 });
 
@@ -21,7 +21,10 @@ const reducer = ( state = initialState, action ) => {
         }));
 
       case actionTypes.GET_POCKET_TOKEN_COMPLETE:
-        return state.set('isAuthed', true);
+        return state.merge(Immutable.fromJS({
+          loading: false,
+          isAuthenticated: true
+        }));
 
       case actionTypes.GET_POCKET_TOKEN_FAIL:
         return state.merge(Immutable.fromJS({

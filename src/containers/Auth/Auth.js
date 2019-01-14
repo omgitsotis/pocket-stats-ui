@@ -11,7 +11,6 @@ class Auth extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log(this.props)
     if (this.props.url && prevProps.url === '') {
       var win = window.open(this.props.url, '_blank');
       win.focus();
@@ -20,10 +19,7 @@ class Auth extends Component {
   }
 
   render() {
-    let authRedirect = null;
-    if (this.props.isAuthenticated) {
-        authRedirect = <Redirect to={"/"}/>
-    }
+    if (this)
 
     return (
       <div className={classes.Card}>
@@ -39,7 +35,7 @@ const mapStateToProps = state => {
 
   return {
     url: stateJS.link,
-    isAuthenticated: stateJS.isAuthed
+    isAuthenticated: stateJS.isAuthenticated
   };
 }
 
