@@ -33,7 +33,7 @@ class App extends Component {
     return (
       <div>
         <Layout>
-          {this.props.loading ? <Spinner /> : routes}
+          {routes}
         </Layout>
       </div>
     );

@@ -11,6 +11,7 @@ class Auth extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    console.log("Auth componentDidUpdate")
     if (this.props.url && prevProps.url === '') {
       var win = window.open(this.props.url, '_blank');
       win.focus();
@@ -19,8 +20,6 @@ class Auth extends Component {
   }
 
   render() {
-    if (this)
-
     return (
       <div className={classes.Card}>
         <h1>Login</h1>
@@ -32,7 +31,7 @@ class Auth extends Component {
 
 const mapStateToProps = state => {
   const stateJS = state.auth.toJS()
-
+  console.log(stateJS)
   return {
     url: stateJS.link,
     isAuthenticated: stateJS.isAuthenticated
