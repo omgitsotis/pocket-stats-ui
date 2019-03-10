@@ -21,7 +21,7 @@ const updateStatsFailed = () => {
 export const updateStats = () => {
   return dispatch => {
     dispatch(updateStatsStart());
-    axios.get("/api/v1/update")
+    axios.get("/api/v1/articles")
       .then(response => {
         console.log(response)
         dispatch(updateStatsSuccess())
