@@ -32,3 +32,36 @@ export const updateStats = () => {
       })
   }
 }
+
+const getStatsStart = () => {
+  return {
+    type: actionTypes.GET_STATS_START
+  };
+}
+
+const getStatsSuccess = (data) => {
+    return {
+        type: actionTypes.GET_STATS_SUCCESS,
+        data: data
+    };
+}
+const getStatsFailed = () => {
+    return {
+        type: actionTypes.GET_STATS_FAILED
+    };
+}
+
+export const getStats = (startDate, endDate) => {
+    return dispatch => {
+        dispatch(getStatsStart());
+        axios.get(`/stats?start=${startDate}&end=${endDate}`)
+            .then(response => {
+                console.log(response)
+                dispatch(getStatsSuccess(response.data))
+            })
+          .catch(error => {
+              console.error(error)
+              dispatch(getStatsFailed())
+          })
+    }
+}

@@ -31,7 +31,6 @@ class Auth extends Component {
 
 const mapStateToProps = state => {
   const stateJS = state.auth.toJS()
-  console.log(stateJS)
   return {
     url: stateJS.link,
     isAuthenticated: stateJS.isAuthenticated
