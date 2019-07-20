@@ -2,8 +2,15 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
 
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+
 import Button from '../../components/UI/Button/Button';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import Header from '../../components/UI/Headers/Header';
 import { updateStats, getStats } from '../../store/actions';
 
 class Homepage extends Component {
@@ -25,10 +32,10 @@ class Homepage extends Component {
         }
 
         return (
-            <div>
-                <h1>Stats</h1>
+            <Container>
+                <Header variant ="h2" title="Stats"></Header>
                 {component}
-            </div>
+            </Container>
         );
     }
 
@@ -36,30 +43,32 @@ class Homepage extends Component {
         const totalStats = this.props.totalStats
         return (
             <div>
-                <div>
-                    <h2>Articles Read</h2>
-                    <p>{totalStats.articles_read}</p>
-                </div>
-                <div>
-                    <h2>Articles Added</h2>
-                    <p>{totalStats.articles_added}</p>
-                </div>
-                <div>
-                    <h2>Words Read</h2>
-                    <p>{totalStats.words_read}</p>
-                </div>
-                <div>
-                    <h2>Word Added</h2>
-                    <p>{totalStats.words_added}</p>
-                </div>
-                <div>
-                    <h2>Time Read</h2>
-                    <p>{totalStats.time_read}</p>
-                </div>
-                <div>
-                    <h2>Time Added</h2>
-                    <p>{totalStats.time_added}</p>
-                </div>
+                <Grid container spacing={3}>
+                    <Grid item md={3} xs={6} >
+                        <Paper>
+                        <Typography variant="h5" component="h3">Articles Read</Typography>
+                        <Typography variant="h2" component="body1">{totalStats.articles_read}</Typography>
+                        </Paper>
+                    </Grid>
+                    <Grid item md={3} xs={6}>
+                        <Paper>
+                        <Typography variant="h5" component="h3">Articles Added</Typography>
+                        <Typography variant="h2" component="body1">{totalStats.articles_added}</Typography>
+                        </Paper>
+                    </Grid>
+                    <Grid item md={3} xs={6}>
+                        <Paper>
+                        <Typography variant="h5" component="h3">Words Read</Typography>
+                        <Typography variant="h2" component="body1">{totalStats.words_read}</Typography>
+                        </Paper>
+                    </Grid>
+                    <Grid item md={3} xs={6}>
+                        <Paper>
+                        <Typography variant="h5" component="h3">Words Added</Typography>
+                        <Typography variant="h2" component="body1">{totalStats.words_added}</Typography>
+                        </Paper>
+                    </Grid>
+                </Grid>
             </div>
         )
     }
