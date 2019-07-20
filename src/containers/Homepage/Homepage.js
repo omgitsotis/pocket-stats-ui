@@ -7,8 +7,8 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import Button from '@material-ui/core/Button';
 
-import Button from '../../components/UI/Button/Button';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import Header from '../../components/UI/Headers/Header';
 import { updateStats, getStats } from '../../store/actions';
@@ -33,7 +33,14 @@ class Homepage extends Component {
 
         return (
             <Container>
-                <Header variant ="h2" title="Stats"></Header>
+                <Grid container spacing={3}>
+                    <Grid item sm={10}>
+                        <Header variant ="h2" title="Stats"></Header>
+                    </Grid>
+                    <Grid>
+                        <Button onClick={() => this.props.updateStats()}>Update</Button>
+                    </Grid>
+                </Grid>
                 {component}
             </Container>
         );
