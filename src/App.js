@@ -3,7 +3,7 @@ import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Layout from './hoc/Layout/Layout';
-import Homepage from './containers/Homepage/Homepage'
+import Homepage from './containers/Homepage/HomepageContainer'
 import Auth from './containers/Auth/Auth'
 import * as actions from './store/actions';
 import Spinner from './components/UI/Spinner/Spinner'
