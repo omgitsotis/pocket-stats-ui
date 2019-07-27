@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import Aux from '../Aux/Aux'
 import Toolbar from '../../components/Navigation/Toolbar/Toolbar'
+import New from '../../components/Navigation/New/Navigation';
 import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer'
 import classes from './Layout.css'
 
@@ -23,13 +24,7 @@ class Layout extends Component {
   render() {
     return (
       <Aux>
-        <Toolbar
-            isAuth
-            drawerToggleClicked={this.sideDrawerToggleHandler} />
-        <SideDrawer
-          isAuth
-          open={this.state.showSideDrawer}
-          closed={this.sideDrawerClosedHandler} />
+        <New />
         <main className={classes.Content}>
           {this.props.children}
         </main>
