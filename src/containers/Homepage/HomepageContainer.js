@@ -2,14 +2,6 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
 
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
-import Button from '@material-ui/core/Button';
-
-import Spinner from '../../components/UI/Spinner/Spinner';
 import { updateStats, getStats } from '../../store/actions';
 import Homepage from './Homepage';
 
@@ -22,40 +14,6 @@ class HomepageContainer extends Component {
 
     render() {
         return <Homepage {...this.props}/>;
-    }
-
-    renderTotalStats() {
-        const totalStats = this.props.totalStats
-        return (
-            <div>
-                <Grid container spacing={3}>
-                    <Grid item md={3} xs={6}>
-                      <Paper>
-                        <Typography variant="h5" component="h3">Articles Read</Typography>
-                        <Typography variant="h2" component="body1">{totalStats.articles_read}</Typography>
-                      </Paper>
-                    </Grid>
-                    <Grid item md={3} xs={6}>
-                        <Paper>
-                        <Typography variant="h5" component="h3">Articles Added</Typography>
-                        <Typography variant="h2" component="body1">{totalStats.articles_added}</Typography>
-                        </Paper>
-                    </Grid>
-                    <Grid item md={3} xs={6}>
-                        <Paper>
-                        <Typography variant="h5" component="h3">Words Read</Typography>
-                        <Typography variant="h2" component="body1">{totalStats.words_read}</Typography>
-                        </Paper>
-                    </Grid>
-                    <Grid item md={3} xs={6}>
-                        <Paper>
-                        <Typography variant="h5" component="h3">Words Added</Typography>
-                        <Typography variant="h2" component="body1">{totalStats.words_added}</Typography>
-                        </Paper>
-                    </Grid>
-                </Grid>
-            </div>
-        )
     }
 }
 

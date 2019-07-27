@@ -6,7 +6,6 @@ import Layout from './hoc/Layout/Layout';
 import Homepage from './containers/Homepage/HomepageContainer'
 import Auth from './containers/Auth/Auth'
 import * as actions from './store/actions';
-import Spinner from './components/UI/Spinner/Spinner'
 
 class App extends Component {
   componentDidMount () {

@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
@@ -42,13 +41,13 @@ const renderTotalStats = (totalStats) => {
 }
 
 const Homepage = (props) => {
-  const {isLoading, callFailed, callSuccess, classes } = props;
+  const {isLoading, callFailed, callSuccess, classes, totalStats, updateStats } = props;
   let component = <Spinner />;
 
   if(callFailed) {
     component = <div>Failed to update stats</div>;
   } else if (callSuccess) {
-    component = renderTotalStats(props.totalStats);
+    component = renderTotalStats(totalStats);
   }
 
   return (
@@ -63,7 +62,7 @@ const Homepage = (props) => {
             className={classes.updateBtn}
             color="primary"
             variant="contained"
-            onClick={() => this.props.updateStats()}
+            onClick={() => updateStats()}
           >
             Update
           </Button>
