@@ -31,7 +31,7 @@ class App extends Component {
 
     return (
       <div>
-        <Layout>
+        <Layout isAuthed={this.props.isAuthenticated}>
           {routes}
         </Layout>
       </div>

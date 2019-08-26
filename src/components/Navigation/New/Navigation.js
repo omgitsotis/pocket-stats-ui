@@ -40,10 +40,11 @@ const useStyles = makeStyles(theme => ({
   drawerPaper: {
     width: drawerWidth,
   },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
+  desktopMenu: {
+    paddingRight: theme.spacing(3),
+    paddingLeft: theme.spacing(3),
   },
+
 }));
 
 const ResponsiveDrawer = (props) => {
@@ -62,7 +63,7 @@ const ResponsiveDrawer = (props) => {
         <Hidden xsDown implementation="css">
           <Toolbar>
             <Typography variant="h6" className={classes.title}>Pocket Stats</Typography>
-            <Button color="inherit">Home</Button>
+            { props.isAuthed && <Button className={classes.desktopMenu} color="inherit">Home</Button>}
           </Toolbar>
         </Hidden>
         <Hidden smUp implementation="css">

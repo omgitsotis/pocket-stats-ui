@@ -1,23 +1,22 @@
 import React from 'react';
 
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
-import Spinner from  '../../components/UI/Spinner/Spinner';
 import Statcard from '../../components/UI/Statcard/Statcard'
 
-
-const styles = {
+const useStyles = makeStyles(theme => ({
   updateBtn : {
-    marginTop: 24
+    marginTop: theme.spacing(4)
   },
   header: {
-    marginBottom: 24
-  }
-};
+    marginBottom: theme.spacing(4)
+  },
+}));
 
 const renderTotalStats = (totalStats) => {
   return (
@@ -41,13 +40,32 @@ const renderTotalStats = (totalStats) => {
 }
 
 const Homepage = (props) => {
-  const {isLoading, callFailed, callSuccess, classes, totalStats, updateStats } = props;
-  let component = <Spinner />;
+  const {isLoading, callFailed, callSuccess, totalStats, updateStats } = props;
 
+  const classes = useStyles();
+  const theme = useTheme();
+
+  let component;
   if(callFailed) {
     component = <div>Failed to update stats</div>;
   } else if (callSuccess) {
     component = renderTotalStats(totalStats);
+  }
+
+  let updateComponent = (
+    <Button
+      size="large"
+      className={classes.updateBtn}
+      color="primary"
+      variant="contained"
+      onClick={() => updateStats()}
+    >
+      Update
+    </Button>
+  );
+
+  if (isLoading) {
+    updateComponent = <CircularProgress className={classes.updateBtn}/>
   }
 
   return (
@@ -57,15 +75,7 @@ const Homepage = (props) => {
           <Typography className={classes.header} variant ="h2">Stats</Typography>
         </Grid>
         <Grid>
-          <Button
-            size="large"
-            className={classes.updateBtn}
-            color="primary"
-            variant="contained"
-            onClick={() => updateStats()}
-          >
-            Update
-          </Button>
+          {updateComponent}
         </Grid>
       </Grid>
       {component}
@@ -74,4 +84,4 @@ const Homepage = (props) => {
 }
 
 
-export default withStyles(styles)(Homepage)
+export default Homepage

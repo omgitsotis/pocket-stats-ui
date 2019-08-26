@@ -24,7 +24,7 @@ class Layout extends Component {
   render() {
     return (
       <Aux>
-        <New />
+        <New isAuthed={this.props.isAuthed}/>
         <main className={classes.Content}>
           {this.props.children}
         </main>
