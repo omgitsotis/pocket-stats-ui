@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
@@ -41,9 +41,7 @@ const renderTotalStats = (totalStats) => {
 
 const Homepage = (props) => {
   const {isLoading, callFailed, callSuccess, totalStats, updateStats } = props;
-
   const classes = useStyles();
-  const theme = useTheme();
 
   let component;
   if(callFailed) {

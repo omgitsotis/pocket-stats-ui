@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 
 import Aux from '../Aux/Aux'
-import Toolbar from '../../components/Navigation/Toolbar/Toolbar'
-import New from '../../components/Navigation/New/Navigation';
-import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer'
+import Navigation from '../../components/Navigation/Navigation';
 import classes from './Layout.css'
 
 class Layout extends Component {
@@ -24,7 +22,7 @@ class Layout extends Component {
   render() {
     return (
       <Aux>
-        <New isAuthed={this.props.isAuthed}/>
+        <Navigation isAuthed={this.props.isAuthed} />
         <main className={classes.Content}>
           {this.props.children}
         </main>
