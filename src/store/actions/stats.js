@@ -1,3 +1,4 @@
+import moment from 'moment';
 import * as actionTypes from './actionTypes'
 import axios from '../../axios-pocket'
 
@@ -21,10 +22,12 @@ const updateStatsFailed = () => {
 export const updateStats = () => {
   return dispatch => {
     dispatch(updateStatsStart());
-    axios.get("/api/v1/articles")
+    axios.get("/update")
       .then(response => {
-        console.log(response)
         dispatch(updateStatsSuccess())
+        const endDate = moment.utc().startOf('day').unix();
+        const startDate = moment.unix(endDate).utc().subtract(7, 'days').unix();
+        dispatch(getStats(startDate, endDate))
       })
       .catch(error => {
         console.error(error)

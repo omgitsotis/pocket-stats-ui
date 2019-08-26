@@ -9,7 +9,20 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import authReducer from './store/reducers/auth';
-import statsReducer from './store/reducers/stats'
+import statsReducer from './store/reducers/stats';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#9e4446"
+    },
+    secondary: {
+      main: "#ffb6bb"
+    },
+  },
+});
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -25,7 +38,9 @@ const store = createStore(rootReducer, composeEnhancers(
 const app = (
   <Provider store={store}>
     <BrowserRouter>
-      <App />
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
     </BrowserRouter>
   </Provider>
 )
