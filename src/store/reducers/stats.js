@@ -22,12 +22,12 @@ const reducer = ( state = initialState, action ) => {
             }));
 
         case actionTypes.GET_STATS_SUCCESS:
-            console.log("GET_STATS_SUCCESS", action.data.totals)
+            console.log("GET_STATS_SUCCESS", action.data)
             return state.merge(Immutable.fromJS({
                 loading: false,
                 callSuccess: true,
                 totalStats: action.data.totals,
-                itemised: action.data.itemised
+                itemisedStats: action.data.itemised
             }));
         case actionTypes.UPDATE_STATS_FAILED:
         case actionTypes.GET_STATS_FAILED:

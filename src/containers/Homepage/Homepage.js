@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -7,7 +8,9 @@ import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import Statcard from '../../components/UI/Statcard/Statcard'
+import Statcard from '../../components/UI/Statcard/Statcard';
+import Graph from '../../components/UI/Graph/Graph';
+
 
 const useStyles = makeStyles(theme => ({
   updateBtn : {
@@ -39,8 +42,20 @@ const renderTotalStats = (totalStats) => {
   )
 }
 
+const itemisedStatsToGraph = (itemisedStats) => {
+  let readData = []
+  let addData = []
+  for (let [day, entry] of Object.entries(itemisedStats)) {
+    var dayStr = moment.unix(day).utc().format("Do MMM");
+    readData.push({x: dayStr, y: entry.articles_read});
+    addData.push({x: dayStr, y: entry.articles_added});
+  }
+
+  return {read: readData, added: addData}
+}
+
 const Homepage = (props) => {
-  const {isLoading, callFailed, callSuccess, totalStats, updateStats } = props;
+  const {isLoading, callFailed, callSuccess, totalStats, itemisedStats, updateStats } = props;
   const classes = useStyles();
 
   let component;
@@ -66,6 +81,8 @@ const Homepage = (props) => {
     updateComponent = <CircularProgress className={classes.updateBtn}/>
   }
 
+  const graphData = itemisedStatsToGraph(itemisedStats);
+
   return (
     <Container>
       <Grid container spacing={3}>
@@ -75,8 +92,13 @@ const Homepage = (props) => {
         <Grid>
           {updateComponent}
         </Grid>
+        <Grid item xs={12}>
+          {component}
+        </Grid>
+        <Grid item xs={12}>
+          <Graph read={graphData.read} added={graphData.added}/>
+        </Grid>
       </Grid>
-      {component}
     </Container>
   );
 }
