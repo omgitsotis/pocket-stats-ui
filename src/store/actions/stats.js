@@ -68,3 +68,38 @@ export const getStats = (startDate, endDate) => {
           })
     }
 }
+
+const getHomepageStart = () => {
+  return {
+    type: actionTypes.GET_HOMEPAGE_START
+  };
+}
+
+const getHomepageSuccess = (data) => {
+    return {
+        type: actionTypes.GET_HOMEPAGE_SUCCESS,
+        data: data
+    };
+}
+const getHomepageFailed = () => {
+    return {
+        type: actionTypes.GET_HOMEPAGE_FAILED
+    };
+}
+
+export const getHomepage = () => {
+    return dispatch => {
+        dispatch(getStatsStart());
+        const endDate = moment.utc().startOf('day').unix();
+        const startDate = moment.unix(endDate).utc().subtract(7, 'days').unix();
+        axios.get(`/stats?start=${startDate}&end=${endDate}`)
+            .then(response => {
+                console.log(response)
+                dispatch(getStatsSuccess(response.data))
+            })
+          .catch(error => {
+              console.error(error)
+              dispatch(getStatsFailed())
+          })
+    }
+}

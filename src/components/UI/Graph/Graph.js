@@ -1,5 +1,13 @@
 import React from 'react';
-import { VictoryAxis, VictoryChart, VictoryLegend, VictoryLine, VictoryTheme } from 'victory';
+import {
+  VictoryAxis,
+  VictoryChart,
+  VictoryLabel,
+  VictoryLegend,
+  VictoryLine,
+  VictoryTheme,
+  VictoryTooltip
+} from 'victory';
 
 import classes from './Graph.css';
 
@@ -33,8 +41,24 @@ const Graph = ({read, added}) => (
           { name: "Added", symbol: { fill: "#6b151f" } },
         ]}
       />
-        <VictoryLine data={read} style={{ data: { stroke: "#d27271" } }}/>
-        <VictoryLine data={added} style={{ data: { stroke: "#6b151f" } }}/>
+        <VictoryLine
+          data={read}
+          labelComponent={<VictoryLabel dy={-2}/>}
+          style={{
+            data: { stroke: "#d27271" },
+            labels: { fontSize: 7, fill: "#d27271" },
+          }}
+          labels={({ datum }) => datum.y}
+        />
+        <VictoryLine
+          data={added}
+          labelComponent={<VictoryLabel dy={-2}/>}
+          style={{
+              data: { stroke: "#6b151f" },
+              labels: { fontSize: 7, fill: "#6b151f"},
+          }}
+          labels={({ datum }) => datum.y}
+        />
     </VictoryChart>
 )
 

@@ -14,6 +14,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -37,9 +38,13 @@ const useStyles = makeStyles(theme => ({
   drawerPaper: {
     width: drawerWidth,
   },
+  title: {
+    marginRight: theme.spacing(2)
+  },
   desktopMenu: {
     paddingRight: theme.spacing(3),
     paddingLeft: theme.spacing(3),
+    color: 'white',
   },
 
 }));
@@ -60,7 +65,16 @@ const ResponsiveDrawer = (props) => {
         <Hidden xsDown implementation="css">
           <Toolbar>
             <Typography variant="h6" className={classes.title}>Pocket Stats</Typography>
-            { props.isAuthed && <Button className={classes.desktopMenu} color="inherit">Home</Button>}
+            { props.isAuthed &&
+              <Link to="/" style={{ textDecoration: 'none' }}>
+                <Button className={classes.desktopMenu} color="inherit">Home</Button>
+              </Link>
+            }
+            { props.isAuthed &&
+              <Link to="/advanced" style={{ textDecoration: 'none' }}>
+                <Button className={classes.desktopMenu} color="inherit">Advance</Button>
+              </Link>
+            }
           </Toolbar>
         </Hidden>
         <Hidden smUp implementation="css">

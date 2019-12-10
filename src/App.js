@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import Layout from './hoc/Layout/Layout';
 import Homepage from './containers/Homepage/HomepageContainer'
+import Advanced from './containers/Advanced/AdvancedContainer'
 import Auth from './containers/Auth/Auth'
 import * as actions from './store/actions';
 
@@ -24,6 +25,7 @@ class App extends Component {
       routes = (
         <Switch>
           <Route path="/" exact component={Homepage} />
+          <Route path="/advanced" exact component={Advanced} />
           <Redirect to="/" />
         </Switch>
       )

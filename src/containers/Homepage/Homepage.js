@@ -55,14 +55,16 @@ const itemisedStatsToGraph = (itemisedStats) => {
 }
 
 const Homepage = (props) => {
-  const {isLoading, callFailed, callSuccess, totalStats, itemisedStats, updateStats } = props;
+  const {isLoading, callFailed, callSuccess, homepage, updateStats } = props;
   const classes = useStyles();
 
-  let component;
+  let component, graphComponent;
   if(callFailed) {
     component = <div>Failed to update stats</div>;
   } else if (callSuccess) {
-    component = renderTotalStats(totalStats);
+    component = renderTotalStats(homepage.totals);
+    const graphData = itemisedStatsToGraph(homepage.itemised);
+    graphComponent = <Graph read={graphData.read} added={graphData.added}/>
   }
 
   let updateComponent = (
@@ -81,8 +83,6 @@ const Homepage = (props) => {
     updateComponent = <CircularProgress className={classes.updateBtn}/>
   }
 
-  const graphData = itemisedStatsToGraph(itemisedStats);
-
   return (
     <Container>
       <Grid container spacing={3}>
@@ -96,7 +96,7 @@ const Homepage = (props) => {
           {component}
         </Grid>
         <Grid item xs={12}>
-          <Graph read={graphData.read} added={graphData.added}/>
+          {graphComponent}
         </Grid>
       </Grid>
     </Container>

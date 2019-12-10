@@ -1,2 +1,2 @@
 export { getPocketToken, checkAuthenticated } from './auth'
-export { updateStats, getStats } from './stats'
+export { updateStats, getStats, getHomepage } from './stats'

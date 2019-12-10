@@ -2,14 +2,12 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
 
-import { updateStats, getStats } from '../../store/actions';
+import { updateStats, getHomepage } from '../../store/actions';
 import Homepage from './Homepage';
 
 class HomepageContainer extends Component {
     componentDidMount() {
-        const endDate = moment.utc().startOf('day').unix();
-        const startDate = moment.unix(endDate).utc().subtract(7, 'days').unix();
-        this.props.getStats(startDate, endDate);
+        this.props.getHomepage();
     }
 
     render() {
@@ -23,15 +21,14 @@ const mapStateToProps = state => {
         isLoading:      stateJS.loading,
         callFailed:     stateJS.updateFailed,
         callSuccess:    stateJS.callSuccess,
-        totalStats:     stateJS.totalStats,
-        itemisedStats:  stateJS.itemisedStats
+        homepage:       stateJS.homepage
     };
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         updateStats: () => dispatch(updateStats()),
-        getStats: (startDate, endDate) => dispatch(getStats(startDate, endDate))
+        getHomepage: () => dispatch(getHomepage())
     };
 }
 
