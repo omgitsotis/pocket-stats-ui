@@ -46,7 +46,7 @@ const Graph = ({read, added}) => (
           labelComponent={<VictoryLabel dy={-2}/>}
           style={{
             data: { stroke: "#d27271" },
-            labels: { fontSize: 7, fill: "#d27271" },
+            labels: { fontSize: 5, fill: "#d27271" },
           }}
           labels={({ datum }) => datum.y}
         />
@@ -55,7 +55,7 @@ const Graph = ({read, added}) => (
           labelComponent={<VictoryLabel dy={-2}/>}
           style={{
               data: { stroke: "#6b151f" },
-              labels: { fontSize: 7, fill: "#6b151f"},
+              labels: { fontSize: 5, fill: "#6b151f"},
           }}
           labels={({ datum }) => datum.y}
         />

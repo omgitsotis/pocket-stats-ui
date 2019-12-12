@@ -3,8 +3,9 @@ import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Layout from './hoc/Layout/Layout';
-import Homepage from './containers/Homepage/HomepageContainer'
-import Advanced from './containers/Advanced/AdvancedContainer'
+import Homepage from './containers/Homepage/HomepageContainer';
+import Advanced from './containers/Advanced/AdvancedContainer';
+import Graphs from './containers/Graphs/GraphsContainer';
 import Auth from './containers/Auth/Auth'
 import * as actions from './store/actions';
 
@@ -26,6 +27,7 @@ class App extends Component {
         <Switch>
           <Route path="/" exact component={Homepage} />
           <Route path="/advanced" exact component={Advanced} />
+          <Route path="/graphs" exact component={Graphs} />
           <Redirect to="/" />
         </Switch>
       )

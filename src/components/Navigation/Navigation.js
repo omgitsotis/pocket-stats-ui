@@ -75,6 +75,11 @@ const ResponsiveDrawer = (props) => {
                 <Button className={classes.desktopMenu} color="inherit">Advance</Button>
               </Link>
             }
+            { props.isAuthed &&
+              <Link to="/graphs" style={{ textDecoration: 'none' }}>
+                <Button className={classes.desktopMenu} color="inherit">Graphs</Button>
+              </Link>
+            }
           </Toolbar>
         </Hidden>
         <Hidden smUp implementation="css">
