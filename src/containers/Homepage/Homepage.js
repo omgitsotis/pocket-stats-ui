@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Statcard from '../../components/UI/Statcard/Statcard';
-import Graph from '../../components/UI/Graph/Graph';
+import Graph from '../../components/UI/Graph/HomepageGraph';
 
 
 const useStyles = makeStyles(theme => ({

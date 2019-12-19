@@ -3,8 +3,8 @@ import Grid from '@material-ui/core/Grid';
 import MomentUtils from '@date-io/moment';
 import { MuiPickersUtilsProvider, DatePicker} from '@material-ui/pickers';
 
-const DateSelect = ({startDate, endDate, onDateChanged}) => (
-  <Grid item sm={12}>
+const DateSelect = ({startDate, endDate, onDateChanged, size}) => (
+  <Grid item sm={size}>
     <MuiPickersUtilsProvider utils={MomentUtils}>
       <Grid container justify="space-around">
         <DatePicker

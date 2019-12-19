@@ -11,7 +11,8 @@ class GraphsContainer extends Component {
     super(props);
     this.state = {
       startDate: moment().subtract(7, 'days'),
-      endDate: moment()
+      endDate: moment(),
+      filterValue: 1,
     }
   }
 
@@ -34,12 +35,20 @@ class GraphsContainer extends Component {
     );
   }
 
+  onFilterChanged = (value) => {
+    this.setState({filterValue: parseInt(value)})
+  }
+
   render() {
+    console.log("render", typeof(this.state.filterValue))
     return (
-      <Graphs {...this.props}
+      <Graphs
+        stats={this.props.stats.itemised}
         startDate={this.state.startDate}
         endDate={this.state.endDate}
         onDateChanged={this.onDateChanged}
+        filterValue={this.state.filterValue}
+        onFilterChanged={this.onFilterChanged}
       />
     );
   }

@@ -6,6 +6,7 @@ import {
   VictoryLegend,
   VictoryLine,
   VictoryTheme,
+  VictoryScatter,
   VictoryTooltip
 } from 'victory';
 
@@ -18,46 +19,28 @@ const axisStyle = {
   axisLabel:  {fill: "#cb868b"}
 };
 
-const Graph = ({read, added}) => (
+const Graph = ({data}) => (
     <VictoryChart
       theme={VictoryTheme.material}
       height={170}
-      domain={{ y: [0, 8] }}
+      scale={{x:"time", y:"linear"}}
+      animate={{duration: 500}}
     >
       <VictoryAxis style={axisStyle}/>
       <VictoryAxis dependentAxis orientation="left" style={axisStyle}/>
-      <VictoryLegend
-        x={125} y={0}
-        title="Read vs Added articles"
-        orientation="horizontal"
-        gutter={10}
-        style={{
-          border: { stroke: "#ffb6bb" },
-          title: {fontSize: 7, fill: "#cb868b"},
-          labels: {fontSize: 7, fill: "#cb868b"}
-        }}
-        data={[
-          { name: "Read", symbol: { fill: "#d27271" } },
-          { name: "Added", symbol: { fill: "#6b151f" } },
-        ]}
-      />
         <VictoryLine
-          data={read}
-          labelComponent={<VictoryLabel dy={-2}/>}
-          style={{
-            data: { stroke: "#d27271" },
-            labels: { fontSize: 5, fill: "#d27271" },
-          }}
-          labels={({ datum }) => datum.y}
+          data={data}
+          style={{ data: { stroke: "#d27271" } }}
         />
-        <VictoryLine
-          data={added}
-          labelComponent={<VictoryLabel dy={-2}/>}
+        <VictoryScatter
+          data={data}
+          size={2}
           style={{
-              data: { stroke: "#6b151f" },
-              labels: { fontSize: 5, fill: "#6b151f"},
+            data: { fill: "#d27271" },
+            labels: { fill: "black", fontSize: 4}
           }}
-          labels={({ datum }) => datum.y}
+          labels={({ datum }) => String(Math.round(datum.y))}
+          labelComponent={<VictoryLabel dy={2}/>}
         />
     </VictoryChart>
 )
