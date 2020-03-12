@@ -2,6 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import MomentUtils from '@date-io/moment';
 
+import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import FormControl from '@material-ui/core/FormControl';
 import Grid from '@material-ui/core/Grid';
@@ -14,7 +15,11 @@ import DateSelect from '../../components/UI/Select/DateSelect';
 import {FilterSelect, FilterValues} from '../../components/UI/Select/FilterSelect';
 import Graph from '../../components/UI/Graph/Graph';
 
-
+const useStyles = makeStyles(theme => ({
+  header: {
+    marginTop: theme.spacing(2)
+  },
+}));
 
 const itemisedStatsToGraphData = (itemisedStats, val) => {
   let data = []
@@ -51,6 +56,7 @@ const itemisedStatsToGraphData = (itemisedStats, val) => {
 }
 
 const Graphs = ({startDate, endDate, onDateChanged, stats, filterValue, onFilterChanged}) => {
+  const classes = useStyles();
   let data = []
 
   if (typeof(stats) !== 'undefined') {
@@ -62,7 +68,7 @@ const Graphs = ({startDate, endDate, onDateChanged, stats, filterValue, onFilter
     <Container>
       <Grid container spacing={3}>
         <Grid item sm={12}>
-          <Typography variant ="h2">Graphs</Typography>
+          <Typography variant ="h2" className={classes.header}>Graphs</Typography>
         </Grid>
         <Grid container direction="row" justify="center" alignItems="center">
           <Grid item sm={6} container direction="row" justify="center" alignItems="center">
