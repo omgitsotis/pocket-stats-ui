@@ -6,7 +6,6 @@ import Layout from './hoc/Layout/Layout';
 import Homepage from './containers/Homepage/HomepageContainer';
 import Advanced from './containers/Advanced/AdvancedContainer';
 import Graphs from './containers/Graphs/GraphsContainer';
-import Auth from './containers/Auth/Auth'
 import * as actions from './store/actions';
 
 class App extends Component {

@@ -6,11 +6,8 @@ import {
   VictoryLegend,
   VictoryLine,
   VictoryTheme,
-  VictoryScatter,
-  VictoryTooltip
+  VictoryScatter
 } from 'victory';
-
-import classes from './Graph.css';
 
 const axisStyle = {
   tickLabels: {fontSize: 7, fill: "#cb868b"},

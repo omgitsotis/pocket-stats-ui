@@ -36,11 +36,10 @@ class GraphsContainer extends Component {
   }
 
   onFilterChanged = (value) => {
-    this.setState({filterValue: parseInt(value)})
+    this.setState({filterValue: parseInt(value, 10)})
   }
 
   render() {
-    console.log("render", typeof(this.state.filterValue))
     return (
       <Graphs
         stats={this.props.stats.itemised}

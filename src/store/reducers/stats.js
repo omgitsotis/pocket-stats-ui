@@ -30,7 +30,7 @@ const reducer = ( state = initialState, action ) => {
                 statsPage: action.data,
             }));
 
-        case actionTypes.GET_HOMEPAGE_START:
+        case actionTypes.GET_HOMEPAGE_SUCCESS:
             return state.merge(Immutable.fromJS({
                 loading: false,
                 callSuccess: true,

@@ -1,14 +1,9 @@
 import React from 'react';
 import moment from 'moment';
-import MomentUtils from '@date-io/moment';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import FormControl from '@material-ui/core/FormControl';
 import Grid from '@material-ui/core/Grid';
-import InputLabel from '@material-ui/core/InputLabel';
-import { MuiPickersUtilsProvider, DatePicker} from '@material-ui/pickers';
-import Select from '@material-ui/core/Select';
 import Typography from '@material-ui/core/Typography';
 
 import DateSelect from '../../components/UI/Select/DateSelect';
@@ -23,10 +18,8 @@ const useStyles = makeStyles(theme => ({
 
 const itemisedStatsToGraphData = (itemisedStats, val) => {
   let data = []
-  console.log("itemisedStatsToGraphData", typeof(val))
   for (let [day, entry] of Object.entries(itemisedStats)) {
     var dateObj = moment.unix(day).utc().toDate();
-    console.log("itemisedStatsToGraphData for loop", val)
     switch (val) {
       case FilterValues.ARTICLES_READ:
         data.push({x: dateObj, y: entry.articles_read})
@@ -47,7 +40,7 @@ const itemisedStatsToGraphData = (itemisedStats, val) => {
         data.push({x: dateObj, y: entry.time_added})
         break;
       default:
-        console.log("unknown filter type: "+ val)
+        console.error("unknown filter type: "+ val)
         return;
     }
   }
@@ -60,7 +53,6 @@ const Graphs = ({startDate, endDate, onDateChanged, stats, filterValue, onFilter
   let data = []
 
   if (typeof(stats) !== 'undefined') {
-    console.log("Graphs.Render", typeof(filterValue))
     data = itemisedStatsToGraphData(stats, filterValue);
   }
 

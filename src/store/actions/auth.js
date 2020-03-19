@@ -35,7 +35,6 @@ const poll = (fn, timeout, interval) => {
       var ajax = fn();
       // dive into the ajax promise
       ajax.then(response => {
-        console.log("checkCondition response")
         // If the condition is met, we're done!
         if(response.status === 200) {
             resolve();
@@ -46,14 +45,13 @@ const poll = (fn, timeout, interval) => {
         }
         // Didn't match and too much time, reject!
         else {
-            console.log("checkCondition error")
             reject(new Error('timed out for auth poll'));
         }
     }).catch(error => {
       if (error.response && error.response.status === 401) {
         setTimeout(checkCondition, interval, resolve, reject);
       } else {
-        console.log('Error', error.message);
+        console.error('Error', error.message);
       }
     });
   };
@@ -70,7 +68,7 @@ const pollAuthedUser = (dispatch) => {
       dispatch(updateStats());
     })
     .catch(function() {
-      console.log("pollAuthedUser error")
+      console.error("pollAuthedUser error")
       dispatch(getPocketTokenFail());
     });
 }
@@ -81,7 +79,6 @@ export const getPocketToken = () => {
 
     axios.get("/auth")
       .then(response => {
-        console.log(response)
         dispatch(getPocketTokenSucess(response.data.url))
         pollAuthedUser(dispatch)
       })

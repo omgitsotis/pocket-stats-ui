@@ -3,15 +3,11 @@ import MomentUtils from '@date-io/moment';
 
 import Container from '@material-ui/core/Container';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import FormControl from '@material-ui/core/FormControl';
 import Grid from '@material-ui/core/Grid';
 import { MuiPickersUtilsProvider, DatePicker} from '@material-ui/pickers';
-import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 
 import Statcard from '../../components/UI/Statcard/Statcard';
-
-const useStyles = makeStyles(theme => ({}));
 
 const formatReadTime = (readTime) => {
   const d = Math.floor(readTime / 1440); // 60*24
@@ -57,7 +53,6 @@ const renderTotalStats = (totals) => {
 }
 
 const Advanced = ({stats, callFailed, isLoading, startDate, endDate, onDateChanged}) => {
-  const classes = useStyles();
   let body;
   if (isLoading) {
     body = <CircularProgress />
