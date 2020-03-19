@@ -55,7 +55,15 @@ const itemisedStatsToGraph = (itemisedStats) => {
 }
 
 const Homepage = (props) => {
-  const {isLoading, callFailed, callSuccess, homepage, updateStats } = props;
+  const {
+      isLoading,
+      callFailed,
+      callSuccess,
+      homepage,
+      updateStats,
+      getPocketToken ,
+      isAuthenticated
+  } = props;
   const classes = useStyles();
 
   let component, graphComponent;
@@ -73,7 +81,7 @@ const Homepage = (props) => {
       className={classes.updateBtn}
       color="primary"
       variant="contained"
-      onClick={() => updateStats()}
+      onClick={() => isAuthenticated ? updateStats() : getPocketToken()}
     >
       Update
     </Button>

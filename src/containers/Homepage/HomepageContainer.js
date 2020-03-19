@@ -2,12 +2,20 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
 
-import { updateStats, getHomepage } from '../../store/actions';
+import { updateStats, getHomepage, getPocketToken, checkAuthenticated } from '../../store/actions';
 import Homepage from './Homepage';
 
 class HomepageContainer extends Component {
     componentDidMount() {
         this.props.getHomepage();
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.link && prevProps.link === '') {
+            var win = window.open(this.props.link, '_blank');
+            win.focus();
+            return
+        }
     }
 
     render() {
@@ -16,19 +24,26 @@ class HomepageContainer extends Component {
 }
 
 const mapStateToProps = state => {
-    const stateJS = state.stats.toJS()
+    const stats = state.stats.toJS();
+    const auth = state.auth.toJS();
+
     return {
-        isLoading:      stateJS.loading,
-        callFailed:     stateJS.updateFailed,
-        callSuccess:    stateJS.callSuccess,
-        homepage:       stateJS.homepage
+        isLoading:       stats.loading,
+        callFailed:      stats.updateFailed,
+        callSuccess:     stats.callSuccess,
+        homepage:        stats.homepage,
+        isAuthenticated: auth.isAuthenticated,
+        loading:         auth.loading,
+        link:            auth.link,
     };
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         updateStats: () => dispatch(updateStats()),
-        getHomepage: () => dispatch(getHomepage())
+        getHomepage: () => dispatch(getHomepage()),
+        getPocketToken: () => dispatch(getPocketToken()),
+        checkAuthenticated: dispatch(checkAuthenticated())
     };
 }
 

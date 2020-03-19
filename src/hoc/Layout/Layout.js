@@ -22,7 +22,7 @@ class Layout extends Component {
   render() {
     return (
       <Aux>
-        <Navigation isAuthed={this.props.isAuthed} />
+        <Navigation />
         <main className={classes.Content}>
           {this.props.children}
         </main>

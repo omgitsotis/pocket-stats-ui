@@ -1,5 +1,6 @@
 import * as actionTypes from './actionTypes'
 import axios from '../../axios-pocket'
+import {updateStats} from './stats';
 
 const getPocketTokenStart = () => {
   return {
@@ -66,6 +67,7 @@ const pollAuthedUser = (dispatch) => {
    }, 10000, 1000)
     .then(function() {
       dispatch(getPocketTokenComplete());
+      dispatch(updateStats());
     })
     .catch(function() {
       console.log("pollAuthedUser error")
@@ -76,6 +78,7 @@ const pollAuthedUser = (dispatch) => {
 export const getPocketToken = () => {
   return dispatch => {
     dispatch(getPocketTokenStart());
+
     axios.get("/auth")
       .then(response => {
         console.log(response)
