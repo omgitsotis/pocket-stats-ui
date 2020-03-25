@@ -1,18 +1,18 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import moment from 'moment';
 
+import Tags from './Tags';
 import { getStats } from '../../store/actions';
-import Graphs from './Graphs';
 
 
-class GraphsContainer extends Component {
+class TagsContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       startDate: moment().subtract(7, 'days'),
-      endDate: moment(),
-      filterValue: 1,
+      endDate: moment()
     }
   }
 
@@ -23,11 +23,12 @@ class GraphsContainer extends Component {
       );
   }
 
+  /* GetStats is the event handler for the date changed events */
   onDateChanged = (start, end) => {
     this.setState({
       startDate: start,
       endDate: end
-    });
+    })
 
     this.props.getStats(
       start.utc().startOf('day').unix(),
@@ -35,21 +36,15 @@ class GraphsContainer extends Component {
     );
   }
 
-  onFilterChanged = (value) => {
-    this.setState({filterValue: parseInt(value, 10)})
-  }
-
   render() {
     return (
-      <Graphs
-        stats={this.props.stats}
+      <Tags
         startDate={this.state.startDate}
         endDate={this.state.endDate}
         onDateChanged={this.onDateChanged}
-        filterValue={this.state.filterValue}
-        onFilterChanged={this.onFilterChanged}
+        {...this.props}
       />
-    );
+    )
   }
 }
 
@@ -69,4 +64,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 }
 
-export default connect( mapStateToProps, mapDispatchToProps )( GraphsContainer );
+export default connect( mapStateToProps, mapDispatchToProps )( TagsContainer );

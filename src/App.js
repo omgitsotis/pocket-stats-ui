@@ -6,6 +6,7 @@ import Layout from './hoc/Layout/Layout';
 import Homepage from './containers/Homepage/HomepageContainer';
 import Advanced from './containers/Advanced/AdvancedContainer';
 import Graphs from './containers/Graphs/GraphsContainer';
+import Tags from './containers/Tags/TagsContainer';
 import * as actions from './store/actions';
 
 class App extends Component {
@@ -21,6 +22,7 @@ class App extends Component {
             <Route path="/" exact component={Homepage} />
             <Route path="/advanced" exact component={Advanced} />
             <Route path="/graphs" exact component={Graphs} />
+            <Route path="/tags" exact component={Tags} />
             <Redirect to="/" />
           </Switch>
         </Layout>

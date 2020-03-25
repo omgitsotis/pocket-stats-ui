@@ -15,12 +15,12 @@ const styles = {
   }
 }
 
-const Statcard = ({title, value, classes}) => (
+const Statcard = ({title, value, classes, bodyVariant}) => (
   <Paper className={classes.paper}>
     <Typography className={classes.title} variant="h5" component="h3">
       {title}
     </Typography>
-    <Typography variant="h2" component="body1">{value}</Typography>
+    <Typography variant="h3" component="body1">{value}</Typography>
   </Paper>
 )
 
