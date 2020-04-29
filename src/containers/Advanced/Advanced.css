@@ -1,0 +1,45 @@
+.advancedSelect{
+    border-width: 1px;
+    border-color: #EFF8F3;
+    border-radius: 10px;
+    border-style: solid;
+    padding-left: 25px;
+    padding-bottom: 25px;
+    width: 100%;
+}
+
+.parentColour{
+    background-color: #72777B;
+    height: 100%;
+}
+
+.totals { background-color: #FCF0F2; }
+
+.grid {
+    background-color: #1D1F20;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 100%;
+}
+
+.halfGridLeft {
+    background-color: #1D1F20;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-right: 5%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 45%;
+}
+
+.halfGridRight {
+    background-color: #1D1F20;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 5%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 45%;
+}

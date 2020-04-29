@@ -1,0 +1,7 @@
+parent-background: #72777B
+background : #1D1F20
+pink: #F3BAC3
+blue: #D0EDF1
+purple: #C9A2D2
+red: #E35F75
+green: #79C698
