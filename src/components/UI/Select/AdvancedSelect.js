@@ -52,8 +52,8 @@ export const AdvancedSelect = ({value, onFilterChange, onDateChanged, startDate,
           onChange={(event) => onFilterChange(event.target.value)}
           inputProps={{ name: 'filter', id: 'filter-native-simple' }}
         >
-          <option value={TimeRange.THIS_WEEK}>This Week</option>
           <option value={TimeRange.LAST_WEEK}>Last Week</option>
+          <option value={TimeRange.THIS_WEEK}>This Week</option>
           <option value={TimeRange.LAST_SEVEN_DAYS}>Last 7 Days</option>
           <option value={TimeRange.THIS_MONTH}>This Month</option>
           <option value={TimeRange.LAST_MONTH}>Last Month</option>

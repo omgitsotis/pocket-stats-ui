@@ -13,9 +13,9 @@ class AdvancedContainer extends Component {
     super(props);
 
     this.state = {
-      startDate: moment().utc().startOf('w'),
-      endDate: moment().utc().startOf('d'),
-      filterValue: TimeRange.THIS_WEEK,
+      startDate:   moment().utc().subtract(7, 'd'),
+      endDate:     moment().utc().startOf('d'),
+      filterValue: TimeRange.LAST_WEEK,
     }
   }
 
@@ -32,11 +32,6 @@ class AdvancedContainer extends Component {
       startDate: start,
       endDate: end
     })
-
-    // this.props.getStats(
-    //   start.utc().startOf('d').unix(),
-    //   end.utc().startOf('d').unix()
-    // );
   }
 
   onAdvanceFilterChanged = (value) => {
@@ -92,6 +87,9 @@ class AdvancedContainer extends Component {
       startDate:   start,
       endDate:     end
     });
+
+    // Update the stats
+    this.props.getStats(start.unix(), end.unix());
   }
 
   render() {

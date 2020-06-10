@@ -1,20 +1,3 @@
-.advancedSelect{
-    border-width: 1px;
-    border-color: #EFF8F3;
-    border-radius: 10px;
-    border-style: solid;
-    padding-left: 25px;
-    padding-bottom: 25px;
-    width: 100%;
-}
-
-.parentColour{
-    background-color: #72777B;
-    height: 100%;
-}
-
-.totals { background-color: #FCF0F2; }
-
 .grid {
     background-color: #1D1F20;
     margin-top: 15px;
@@ -22,6 +5,12 @@
     padding-top: 20px;
     padding-bottom: 20px;
     width: 100%;
+}
+
+.valueBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .halfGridLeft {
@@ -44,8 +33,20 @@
     width: 45%;
 }
 
-.valueBox {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+.icon{
+  padding-top: 20px;
+  padding-left: 5px;
+  font-size: 1.5rem;
+}
+
+.iconLarge {
+    font-size: 3rem;
+}
+
+.iconUp {
+    color: #31724b;
+}
+
+.iconDown {
+    color: #DA304C;
 }

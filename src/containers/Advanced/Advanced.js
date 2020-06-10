@@ -11,6 +11,8 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
 import { AdvancedSelect } from '../../components/UI/Select/AdvancedSelect';
+import { Totals } from '../../components/UI/Advanced/Totals';
+import { Tags } from '../../components/UI/Advanced/Tags';
 
 import cssClasses from './Advanced.css';
 
@@ -42,6 +44,11 @@ const useStyles = makeStyles(theme => ({
   },
   words: {
     color: `#D0EDF1`
+  },
+  diff: {
+    textAlign: 'center',
+    paddingLeft: 15,
+    paddingTop: 17,
   }
 }));
 
@@ -99,126 +106,38 @@ const Advanced = ({
               </Typography>
             </Grid>
           </div>
-          <div className={cssClasses.grid}>
-            <Grid container>
-              <Grid item sm={4}>
-                <Typography variant="h4" className={clsx(classes.articleGrid, classes.label)}>
-                  Articles Read
-                </Typography>
-                <Typography variant="h3" className={clsx(classes.articleGrid, classes.value)}>
-                  {stats.totals.articles_read}
-                </Typography>
-              </Grid>
-              <Grid item sm={4}>
-                <Typography variant="h4" className={clsx(classes.articleGrid, classes.label)}>
-                  Articles Added
-                </Typography>
-                <Typography variant="h3" className={clsx(classes.articleGrid, classes.value)}>
-                  {stats.totals.articles_added}
-                </Typography>
-              </Grid>
-              <Grid item sm={4}>
-                <Typography variant="h4" className={clsx(classes.articleGrid, classes.label)}>
-                  Difference
-                </Typography>
-                <Typography variant="h3" className={clsx(classes.articleGrid, classes.value)}>
-                  {stats.totals.articles_added - stats.totals.articles_read}
-                </Typography>
-              </Grid>
-            </Grid>
-          </div>
-          <div className={cssClasses.grid}>
-            <Grid container>
-              <Grid item sm={4}>
-                <Typography variant="h4" className={clsx(classes.words, classes.label)}>
-                  Words Read
-                </Typography>
-                <Typography variant="h3" className={clsx(classes.words, classes.value)}>
-                  {stats.totals.words_read}
-                </Typography>
-              </Grid>
-              <Grid item sm={4}>
-                <Typography variant="h4" className={clsx(classes.words, classes.label)}>
-                  Words Added
-                </Typography>
-                <Typography variant="h3" className={clsx(classes.words, classes.value)}>
-                  {stats.totals.words_added}
-                </Typography>
-              </Grid>
-              <Grid item sm={4}>
-                <Typography variant="h4" className={clsx(classes.words, classes.label)}>
-                  Difference
-                </Typography>
-                <Typography variant="h3" className={clsx(classes.words, classes.value)}>
-                  {stats.totals.words_added - stats.totals.words_read}
-                </Typography>
-              </Grid>
-            </Grid>
-          </div>
-          <div className={cssClasses.grid}>
-            <Grid container>
-              <Grid item sm={4}>
-                <Typography variant="h4" className={clsx(classes.articleGrid, classes.label)}>
-                  Time Spent Read
-                </Typography>
-                <Typography variant="h3" className={clsx(classes.articleGrid, classes.value)}>
-                  {`${stats.totals.time_read} mins`}
-                </Typography>
-              </Grid>
-              <Grid item sm={4}>
-                <Typography variant="h4" className={clsx(classes.articleGrid, classes.label)}>
-                  Time Spent Added
-                </Typography>
-                <Typography variant="h3" className={clsx(classes.articleGrid, classes.value)}>
-                  {`${stats.totals.time_added} mins`}
-                </Typography>
-              </Grid>
-              <Grid item sm={4}>
-                <Typography variant="h4" className={clsx(classes.articleGrid, classes.label)}>
-                  Difference
-                </Typography>
-                <Typography variant="h3" className={clsx(classes.articleGrid, classes.value)}>
-                  {`${stats.totals.time_added - stats.totals.time_read} mins`}
-                </Typography>
-              </Grid>
-            </Grid>
-          </div>
-          <div className={cssClasses.halfGridLeft}>
-            <Grid container>
-              <Grid item sm={12}>
-                <Typography variant="h4" className={clsx(classes.articleGrid, classes.label)}>
-                  Top Tags
-                </Typography>
-                <Typography variant="h4" className={clsx(classes.articleGrid, classes.label)}>
-                  {` Basketball: (${stats.tags.basketball.articles_read})`}
-                </Typography>
-                <Typography variant="h4" className={clsx(classes.articleGrid, classes.label)}>
-                  {` Coronavirus: (${stats.tags.corona.articles_read})`}
-                </Typography>
-                <Typography variant="h4" className={clsx(classes.articleGrid, classes.label)}>
-                  {` Movies: (${stats.tags.movie.articles_read})`}
-                </Typography>
-              </Grid>
-            </Grid>
-          </div>
-          <div className={cssClasses.halfGridRight}>
-            <Grid container>
-              <Grid item sm={12}>
-                <Typography variant="h4" className={clsx(classes.articleGrid, classes.label)}>
-                  Top Tags
-                </Typography>
-                <Typography variant="h4" className={clsx(classes.articleGrid, classes.label)}>
-                  {` Basketball: (${stats.tags.basketball.articles_read})`}
-                </Typography>
-                <Typography variant="h4" className={clsx(classes.articleGrid, classes.label)}>
-                  {` Coronavirus: (${stats.tags.corona.articles_read})`}
-                </Typography>
-                <Typography variant="h4" className={clsx(classes.articleGrid, classes.label)}>
-                  {` Movies: (${stats.tags.movie.articles_read})`}
-                </Typography>
-              </Grid>
-            </Grid>
-          </div>
+          <Totals
+            read={stats.totals.articles_read}
+            added={stats.totals.articles_added}
+            read_previous={stats.previous.totals.articles_read}
+            added_previous={stats.previous.totals.articles_added}
+            label="Articles"
+          />
+          <Totals
+            read={stats.totals.words_read}
+            added={stats.totals.words_added}
+            read_previous={stats.previous.totals.words_read}
+            added_previous={stats.previous.totals.words_added}
+            label="Words"
+          />
+          <Totals
+            read={stats.totals.time_read}
+            added={stats.totals.time_added}
+            read_previous={stats.previous.totals.time_read}
+            added_previous={stats.previous.totals.time_added}
+            label="Time"
+          />
+          <Tags
+            tags={stats.tags}
+            previous_tags={stats.previous.tags}
+            stat_type='words_read'
+          />
+          <Tags
+            tags={stats.tags}
+            previous_tags={stats.previous.tags}
+            stat_type='articles_read'
+            side="right"
+          />
         </Grid>
       </Container>
     </div>
