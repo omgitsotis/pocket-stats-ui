@@ -19,9 +19,9 @@ import cssClasses from './Advanced.css';
 const useStyles = makeStyles(theme => ({
   dateLabel: {
     marginTop: theme.spacing(3),
-    color: `#EFF8F3`,
+    color: `#0C2231`,
     borderBottomWidth: 3,
-    borderBottomColor: `#EFF8F3`,
+    borderBottomColor: `#0C2231`,
     borderBottomStyle: 'solid'
   },
   loading: {
@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
     paddingBottom: 15,
   },
   title: {
-    color: `#EFF8F3`
+    color: `#0C2231`
   },
   articleGrid: {
     color: `#F3BAC3`

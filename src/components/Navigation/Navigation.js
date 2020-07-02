@@ -39,12 +39,13 @@ const useStyles = makeStyles(theme => ({
     width: drawerWidth,
   },
   title: {
-    marginRight: theme.spacing(2)
+    marginRight: theme.spacing(2),
+    color: '#0C2231'
   },
   desktopMenu: {
     paddingRight: theme.spacing(3),
     paddingLeft: theme.spacing(3),
-    color: 'white',
+    color: '#0C2231',
   },
 
 }));

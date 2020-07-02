@@ -23,11 +23,11 @@ export const TimeRange = {
 
 const useStyles = makeStyles(theme => ({
   label: {
-    color: '#EFF8F3'
+    color: '#0C2231'
   },
   lookbackSelect: {
     width: 400,
-    color: '#EFF8F3'
+    color: '#0C2231'
   },
   container: {
     marginTop: theme.spacing(1)

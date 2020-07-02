@@ -7,26 +7,16 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 
 import css from './Advanced.css';
+import Theme from '../../theme';
 
 const useStyles = makeStyles(theme => ({
-  label: {
-    paddingTop: 15,
-    paddingBottom: 15,
-    textAlign: 'center',
-  },
-  value: {
-    textAlign: 'center',
-    paddingBottom: 15,
-  },
-  title: {
-    color: `#EFF8F3`
-  },
   grid: {
-    color: `#F3BAC3`
+    paddingTop: 15,
+    textAlign: 'center',
+    color: Theme.text
   },
   diff: {
-    textAlign: 'center',
-    paddingTop: 18,
+    paddingTop: 32,
   }
 }));
 
@@ -35,26 +25,24 @@ export const Totals = ({read, added, read_previous, added_previous, label}) => {
 
     const diff =  read - added;
     const prevDiff = read_previous - added_previous;
-    // const diff =  added - read;
-    // const prevDiff = added_previous - read_previous;
 
     return (
       <div className={css.grid}>
         <Grid container>
           <Grid item sm={4}>
-            <Typography variant="h4" className={clsx(classes.grid, classes.label)}>
+            <Typography variant="h4" className={classes.grid}>
               {`${label} Read`}
             </Typography>
             <StatValue value={read} valuePrevious={read_previous} />
           </Grid>
           <Grid item sm={4}>
-            <Typography variant="h4" className={clsx(classes.grid, classes.label)}>
+            <Typography variant="h4" className={classes.grid}>
                 {`${label} Added`}
             </Typography>
             <StatValue value={added} valuePrevious={added_previous} />
           </Grid>
           <Grid item sm={4}>
-            <Typography variant="h4" className={clsx(classes.grid, classes.label)}>
+            <Typography variant="h4" className={classes.grid}>
               Difference
             </Typography>
             <DiffValue value={diff} valuePrevious={prevDiff} />
@@ -93,7 +81,7 @@ const StatValue = ({value, valuePrevious}) => {
 
   return (
     <div className={css.valueBox}>
-      <Typography variant="h3" className={clsx(classes.grid, classes.value)}>
+      <Typography variant="h3" className={classes.grid}>
         {value}
       </Typography>
       {arrow}
@@ -120,7 +108,7 @@ const DiffValue = ({value, valuePrevious}) => {
       </span>
     );
 
-    value *= -1
+    value *= -1;
   }
 
   let arrow = (
@@ -144,7 +132,7 @@ const DiffValue = ({value, valuePrevious}) => {
   return (
     <div className={css.valueBox}>
       {trendArrow}
-      <Typography variant="h3" className={clsx(classes.grid, classes.value)}>
+      <Typography variant="h3" className={classes.grid}>
         {value}
       </Typography>
       {arrow}

@@ -11,13 +11,16 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Statcard from '../../components/UI/Statcard/Statcard';
 import Graph from '../../components/UI/Graph/HomepageGraph';
 
+import css from './Homepage.css';
+import theme from '../../components/theme';
 
 const useStyles = makeStyles(theme => ({
   updateBtn : {
     marginTop: theme.spacing(4)
   },
   header: {
-    marginBottom: theme.spacing(4)
+    marginBottom: theme.spacing(4),
+    color: '#0C2231'
   },
 }));
 
@@ -92,22 +95,26 @@ const Homepage = (props) => {
   }
 
   return (
-    <Container>
-      <Grid container spacing={3}>
-        <Grid item sm={10}>
-          <Typography className={classes.header} variant ="h2">Stats</Typography>
+    <div className={css.parent}>
+      <Container>
+        <Grid container spacing={3}>
+          <Grid item sm={10}>
+            <Typography className={classes.header} variant ="h2">Stats</Typography>
+          </Grid>
+          <Grid>
+            {updateComponent}
+          </Grid>
+          <Grid item xs={12}>
+            {component}
+          </Grid>
+          <Grid item xs={12}>
+            <div className={css.gridContainer}>
+              {graphComponent}
+            </div>
+          </Grid>
         </Grid>
-        <Grid>
-          {updateComponent}
-        </Grid>
-        <Grid item xs={12}>
-          {component}
-        </Grid>
-        <Grid item xs={12}>
-          {graphComponent}
-        </Grid>
-      </Grid>
-    </Container>
+      </Container>
+    </div>
   );
 }
 

@@ -9,11 +9,12 @@ import {
   VictoryScatter
 } from 'victory';
 
+import Theme from '../../theme'
+
 const axisStyle = {
-  tickLabels: {fontSize: 7, fill: "#cb868b"},
-  axis:       {stroke: "#ffb6bb"},
-  grid:       {stroke: "#ffe9ed"},
-  axisLabel:  {fill: "#cb868b"}
+  tickLabels: {fontSize: 7, fill: Theme.text},
+  axis:       {stroke: Theme.border},
+  grid:       {stroke: Theme.borderLight},
 };
 
 const HomepageGraph = ({read, added}) => (
@@ -29,38 +30,38 @@ const HomepageGraph = ({read, added}) => (
         orientation="horizontal"
         gutter={10}
         style={{
-          border: { stroke: "#ffb6bb" },
-          title: {fontSize: 7, fill: "#cb868b"},
-          labels: {fontSize: 7, fill: "#cb868b"}
+          border: { stroke: Theme.border },
+          title: {fontSize: 7, fill: Theme.text},
+          labels: {fontSize: 7, fill: Theme.text}
         }}
         data={[
-          { name: "Read", symbol: { fill: "#d27271" } },
-          { name: "Added", symbol: { fill: "#6b151f" } },
+          { name: "Read", symbol: { fill: Theme.green } },
+          { name: "Added", symbol: { fill: Theme.red } },
         ]}
       />
         <VictoryLine
           data={read}
-          style={{ data: { stroke: "#d27271" } }}
+          style={{ data: { stroke: Theme.green } }}
         />
         <VictoryScatter
           data={read}
-          size={2}
+          size={3}
           style={{
-            data: { fill: "#d27271" },
-            labels: { fill: "black", fontSize: 4}
+            data: { fill: Theme.green },
+            labels: { fill: Theme.text, fontSize: 4}
           }}
           labels={({ datum }) => datum.y}
           labelComponent={<VictoryLabel dy={2}/>}
         />
         <VictoryLine
           data={added}
-          style={{ data: { stroke: "#6b151f" }}}
+          style={{ data: { stroke: Theme.red }}}
         />
         <VictoryScatter
           data={added}
           size={3}
           style={{
-            data: { fill: "#6b151f" },
+            data: { fill: Theme.red },
             labels: { fill: "white", fontSize: 4}
           }}
           labels={({ datum }) => datum.y}
