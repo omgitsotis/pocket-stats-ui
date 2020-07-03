@@ -150,6 +150,9 @@ const Tag = ({tag}) => {
         {`${name} (${tag.value})`}
       </Typography>
       {arrow}
+      <Typography variant="h5" className={clsx(classes.grid, classes.diff)}>
+        {diff}
+      </Typography>
     </div>
   )
 }
