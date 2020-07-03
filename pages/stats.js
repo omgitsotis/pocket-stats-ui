@@ -2,7 +2,7 @@ import Head from 'next/head'
 
 import Layout from '../components/Layout/Layout'
 
-export default function Home() {
+export default function Stats() {
   return (
     <div className="container">
       <Head>
@@ -10,20 +10,15 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-        <div className="content">
-          <div className="text-center">
-          <div style={{margin: 'auto'}}>
-            <div className="frame">
-              <div className="frame__body">
-                <div className="row p-0 level fill-height">
-                  <div className="col-12">
-                    <h1>👋 Hello world!</h1>
-                    <h6 className="font-alt font-light">A webpage powered by <b>Cirrus.</b></h6>
-                  </div>
+        <div style={{margin: 'auto'}}>
+          <div className="frame">
+            <div className="frame__body">
+              <div className="row p-0 level fill-height">
+                <div className="col-12">
+                  <h1 className="u-text-center">Coming Soon</h1>
                 </div>
               </div>
             </div>
-          </div>
           </div>
         </div>
       </Layout>
