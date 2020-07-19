@@ -23,6 +23,10 @@ class Home extends React.Component {
     }
   }
 
+  componentDidMount() {
+      this.getStats();
+  }
+
   onError(error, message) {
     console.error(error)
     this.setState({
@@ -104,10 +108,6 @@ class Home extends React.Component {
           this.onError(error, "couldn't check if we have authentication")
         }
       })
-  }
-
-  static async getInitialProps() {
-    return {}
   }
 
   render() {
