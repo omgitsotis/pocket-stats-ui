@@ -1,8 +1,13 @@
-const UpdateButton = (props) => {
+import clsx from 'clsx';
+
+const UpdateButton = ({loading, onClick}) => {
+  const className = clsx("btn-primary outline", loading && "animated loading loading-left");
   return (
-    <button className="btn-primary outline" onClick={props.onClick}>
-      Update
-    </button>
+    <div style={{"paddingTop": "2rem"}}>
+      <button className={className} onClick={onClick}>
+        Update
+      </button>
+    </div>
   )
 }
 

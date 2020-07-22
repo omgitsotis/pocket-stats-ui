@@ -8,6 +8,8 @@ import poll from '../libs/poll'
 
 import Layout from '../components/Layout/Layout'
 import UpdateButton from '../components/UI/Button/UpdateButton'
+import Statcards from '../components/UI/Homepage/Statcards'
+import Loader from '../components/UI/Loader/Loader'
 
 class Home extends React.Component {
   constructor(props) {
@@ -16,8 +18,9 @@ class Home extends React.Component {
     this.state = {
       url : "",
       authed: false,
-      updated: false,
+      hasData: false,
       hasError: false,
+      loading: false,
       error: "",
       data: {}
     }
@@ -42,7 +45,8 @@ class Home extends React.Component {
       .then(response => {
           this.setState({
             data: response.data,
-            updated: true,
+            hasData: true,
+            loading: false,
           })
       })
     .catch(error => this.onError(error, "couldn't get stats"))
@@ -83,6 +87,7 @@ class Home extends React.Component {
 
   onUpdatedClicked() {
     // Call the server to see if it has a valid Pocket token
+    this.setState({loading: true})
     axios.get('/auth/authed')
       .then(response => {
         // If there is one, then we can call the Update endpoint to update the
@@ -111,6 +116,16 @@ class Home extends React.Component {
   }
 
   render() {
+    let body = (
+      <div className="row">
+        <Loader />
+      </div>
+    )
+
+    if (this.state.hasData) {
+      body = <Statcards totals={this.state.data.totals} />
+    }
+
     return (
       <div className="container">
         <Head>
@@ -118,36 +133,27 @@ class Home extends React.Component {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <Layout>
-          <div className="content">
-            <div className="text-center">
+          <div className="content text-center">
             <div style={{margin: 'auto'}}>
               <div className="frame">
                 <div className="frame__body">
                   <div className="row p-0 level fill-height">
-                    <div className="col-12">
-                      <h1>👋 Hello world!</h1>
-                      <UpdateButton onClick={() => this.onUpdatedClicked()}/>
-                      <h6>{this.state.hasError && this.state.error}</h6>
-                      <h6>{this.state.authed && "We have authed"}</h6>
-                      <h6>{this.state.updated && "We have updated the data"}</h6>
+                    <div className="col-10">
+                      <h1 className="headline-4">Home</h1>
                     </div>
+                    <div className="col-2">
+                      <UpdateButton onClick={() => this.onUpdatedClicked()} loading={this.state.loading}/>
+                    </div>
+                  </div>
+                  <div className="divider" />
+                  <div className="row">
+                    {body}
                   </div>
                 </div>
               </div>
             </div>
-            </div>
           </div>
         </Layout>
-        <footer>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Powered by{' '}
-            <img src="/vercel.svg" alt="Vercel Logo" className="logo" />
-          </a>
-        </footer>
       </div>
     )
   }

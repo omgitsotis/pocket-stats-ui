@@ -1,16 +1,16 @@
 import Header from './Header';
 
 const Layout = (props) => (
-  <body>
+  <div>
     <Header />
     <section className="section">
-      <div className="hero fullscreen">
+      <div className="hero">
         <div className="hero-body u-center">
           {props.children}
         </div>
       </div>
     </section>
-  </body>
+  </div>
 );
 
 export default Layout
