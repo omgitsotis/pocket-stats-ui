@@ -7,9 +7,10 @@ import axios from '../libs/axios'
 import poll from '../libs/poll'
 
 import Layout from '../components/Layout/Layout'
+import Loader from '../components/UI/Loader/Loader'
 import UpdateButton from '../components/UI/Button/UpdateButton'
 import Statcards from '../components/UI/Homepage/Statcards'
-import Loader from '../components/UI/Loader/Loader'
+import Graph from '../components/UI/Homepage/Graph';
 
 class Home extends React.Component {
   constructor(props) {
@@ -123,7 +124,15 @@ class Home extends React.Component {
     )
 
     if (this.state.hasData) {
-      body = <Statcards totals={this.state.data.totals} />
+      body = (
+        <div className= "row">
+          <div className="col-12">
+            <Statcards totals={this.state.data.totals} />
+            <Graph itemised={this.state.data.itemised} />
+          </div>
+        </div>
+      )
+
     }
 
     return (
@@ -136,7 +145,7 @@ class Home extends React.Component {
           <div className="content text-center">
             <div style={{margin: 'auto'}}>
               <div className="frame">
-                <div className="frame__body">
+                <div className="frame__body" style={{"overflow":"hidden"}}>
                   <div className="row p-0 level fill-height">
                     <div className="col-10">
                       <h1 className="headline-4">Home</h1>
@@ -146,9 +155,7 @@ class Home extends React.Component {
                     </div>
                   </div>
                   <div className="divider" />
-                  <div className="row">
-                    {body}
-                  </div>
+                  {body}
                 </div>
               </div>
             </div>
