@@ -32,7 +32,6 @@ class Home extends React.Component {
   }
 
   onError(error, message) {
-    console.error(error)
     this.setState({
       hasError: true,
       error: message
