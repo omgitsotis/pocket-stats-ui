@@ -145,15 +145,15 @@ class Home extends React.Component {
             <div style={{margin: 'auto'}}>
               <div className="frame">
                 <div className="frame__body" style={{"overflow":"hidden"}}>
-                  <div className="row p-0 level fill-height">
+                  <div className="row p-0 level">
                     <div className="col-10">
-                      <h1 className="headline-4">Home</h1>
+                      <h2 className="headline-4">Home</h2>
                     </div>
                     <div className="col-2">
                       <UpdateButton onClick={() => this.onUpdatedClicked()} loading={this.state.loading}/>
                     </div>
                   </div>
-                  <div className="divider" />
+                  <div className="divider" style={{"marginTop": "0px"}}/>
                   {body}
                 </div>
               </div>
