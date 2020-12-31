@@ -21,7 +21,7 @@ export default function Stats() {
   });
 
   const getStats = (start, end) => {
-    axios.get(`/stats?start=${start}&end=${end}`)
+    axios.get(`/stats/total?start=${start}&end=${end}`)
       .then(response => {
         console.log(response.data);
         setState({
