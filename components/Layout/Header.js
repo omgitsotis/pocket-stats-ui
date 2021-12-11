@@ -19,6 +19,11 @@ const Header = () => (
             <a>Stats</a>
           </Link>
         </div>
+        <div className="nav-item">
+          <Link href="/tags">
+            <a>Tags</a>
+          </Link>
+        </div>
       </div>
     </div>
   </div>

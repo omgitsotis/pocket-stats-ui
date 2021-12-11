@@ -1,6 +1,5 @@
-const withCSS = require('@zeit/next-css')
-module.exports = withCSS({
-  env: {
+module.exports = {
+env: {
     auth: process.env.AUTH,
   },
-})
+};
