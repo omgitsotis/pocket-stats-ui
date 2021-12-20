@@ -76,3 +76,42 @@ export const tagToIcon = (tag) => {
       break;
   }
 }
+
+export const TagList = [
+  "american football",
+  "art",
+  "bachelor",
+  "baseball",
+  "basketball",
+  "books",
+  "bowling",
+  "boxing",
+  "chess",
+  "comedy",
+  "corona",
+  "crime",
+  "cycling",
+  "food",
+  "football",
+  "golf",
+  "health",
+  "history",
+  "ice hockey",
+  "life",
+  "media",
+  "mma",
+  "movie",
+  "music",
+  "news",
+  "other sports",
+  "parenthood",
+  "politics",
+  "pop culture",
+  "science",
+  "sex",
+  "tech",
+  "tennis",
+  "tv",
+  "video games",
+  "wrestling"
+]

@@ -1,15 +1,17 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 const { DateTime } = require("luxon");
 
 import axios from '../libs/axios';
 
 import { DROPDOWN_RELATIVE, DROPDOWN_ABSOLUTE } from '../libs/const';
+import {TagList} from '../libs/tags';
 import Layout from '../components/Layout/Layout';
 import TagRanking from '../components/UI/Tags/Ranking';
 import DropdownButton from '../components/UI/Button/DropdownButton';
 import TimeRange from '../components/UI/Stats/TimeRange/TimeRange';
 import TagFilter from '../components/UI/Tags/TagFilter';
+import TagInfo from '../components/UI/Tags/Info';
 
 export default function Tags() {
   const [state, setState] = useState({
@@ -18,6 +20,7 @@ export default function Tags() {
     dropdown: DROPDOWN_RELATIVE,
     relativeValue: "7",
     selectedTag: "",
+    tags: {...TagList.reduce((obj, item) => ({...obj, [item]: false}), {})},
     data: {},
   });
 
@@ -132,9 +135,26 @@ export default function Tags() {
   }
 
   const onTagChanged = (tagName) => {
+    let newSelectedTag = tagName;
+    let newTags = {
+      ...state.tags
+    };
+
+    if (tagName !== state.selectedTag) {
+      newTags[tagName] = true;
+      newTags[state.selectedTag] = false;
+    } else {
+      newTags[tagName] = !newTags[tagName];
+      newSelectedTag = ""
+    }
+
+
     setState({
       ...state,
-      selectedTag: tagName
+      selectedTag: newSelectedTag,
+      tags: {
+        ...newTags
+      },
     });
   }
 
@@ -142,6 +162,26 @@ export default function Tags() {
   useEffect(() => {
     getStats(state.startDate.toSeconds(), state.endDate.toSeconds());
   }, [state.startDate, state.endDate])
+
+  let base = (
+    <div className="row">
+      <div className="col-4">
+        <TagRanking data={state.data.tags} type="articles_read"/>
+      </div>
+      <div className="col-4">
+        <TagRanking data={state.data.tags} type="words_read"/>
+      </div>
+      <div className="col-4">
+        <TagRanking data={state.data.tags} type="time_read"/>
+      </div>
+    </div>
+  );
+
+  if (state.selectedTag !== "") {
+    base = (
+       <TagInfo name={(state.selectedTag)} tag={(state.data.tags === undefined) ? {} : state.data.tags[state.selectedTag]}/>
+    );
+  }
 
   return (
     <div className="container">
@@ -174,19 +214,9 @@ export default function Tags() {
                   />
                 </div>
                 <div className="divider" />
-                <TagFilter onTagClicked={onTagChanged}/>
+                <TagFilter onTagClicked={onTagChanged} tagList={TagList} tagState={state.tags}/>
                 <div className="divider" />
-                <div className="row">
-                  <div className="col-4">
-                    <TagRanking data={state.data.tags} type="articles_read"/>
-                  </div>
-                  <div className="col-4">
-                    <TagRanking data={state.data.tags} type="words_read"/>
-                  </div>
-                  <div className="col-4">
-                    <TagRanking data={state.data.tags} type="time_read"/>
-                  </div>
-                </div>
+                {base}
               </div>
             </div>
           </div>

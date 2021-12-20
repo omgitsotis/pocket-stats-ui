@@ -80,8 +80,8 @@ const TagRanking = ({data, type}) => {
     fifthTag = (
       <div className="row">
         <div className="col-4">
-          <div class="icon subtitle tooltip" data-tooltip={items[4].tag} style={{ "fontSize": "1.5rem" }}>
-            <i class={clsx("fa-wrapper fa my-2", tagToIcon(items[4].tag))}></i>
+          <div className="icon subtitle tooltip" data-tooltip={items[4].tag} style={{ "fontSize": "1.5rem" }}>
+            <i className={clsx("fa-wrapper fa my-2", tagToIcon(items[4].tag))}></i>
           </div>
         </div>
         <div className="col-8">
