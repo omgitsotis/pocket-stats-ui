@@ -137,7 +137,7 @@ class Home extends React.Component {
     return (
       <div className="container">
         <Head>
-          <title>Create Next App</title>
+          <title>Otis' Pocket Stats</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <Layout>
