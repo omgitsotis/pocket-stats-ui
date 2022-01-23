@@ -30,6 +30,7 @@ const Theme = {
 
 export const options = {
   responsive: true,
+  maintainAspectRatio: false,
   plugins: {
     legend: {
       position: 'top',
@@ -85,7 +86,7 @@ const itemisedStatsToGraph = (itemised) => {
 const Graph = ({itemised}) => {
   const graphData = itemisedStatsToGraph(itemised);
 
-  return <Line options={options} data={graphData}/>;
+  return <Line options={options} data={graphData} style={{"minHeight": 500}}/>;
 }
 
 export default Graph;
