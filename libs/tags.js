@@ -26,6 +26,8 @@ export const tagToIcon = (tag) => {
       return "fa-head-side-mask"
     case "cycling":
       return "fa-bicycle"
+    case "economics":
+      return "fa-money-bill-wave"
     case "food":
       return "fa-hamburger"
     case "football":
@@ -91,6 +93,7 @@ export const TagList = [
   "corona",
   "crime",
   "cycling",
+  "economics",
   "food",
   "football",
   "golf",

@@ -1,82 +1,91 @@
 import moment from 'moment'
 import {
-  VictoryAxis,
-  VictoryChart,
-  VictoryLabel,
-  VictoryLegend,
-  VictoryLine,
-  VictoryTheme,
-  VictoryScatter
-} from 'victory';
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+import { Line } from 'react-chartjs-2';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const Theme = {
-  parent:       "#f9dce1",
-  background:   "#f1f3f8",
-  text:         "#0c2231",
-  border:       "#c8cde5",
-  borderLight:  "#e0e3f0",
-  green:        "#46a46c",
-  red:          "#da304c"
+  read:         "rgba(70,164,108, 0.5)",
+  readBorder:   "rgb(70,164,108)",
+  added:        "rgba(218,48,76, 0.5)",
+  addedBorder:  "rgb(218,48,76)"
 };
 
-const axisStyle = {
-  tickLabels: {fontSize: 7, fill: Theme.text},
-  axis:       {stroke: Theme.border},
-  grid:       {stroke: Theme.borderLight},
+export const options = {
+  responsive: true,
+  plugins: {
+    legend: {
+      position: 'top',
+      labels: {
+        font: {
+          size: 22
+        },
+      }
+    },
+    title: {
+      display: true,
+      text: 'Added vs Read',
+      font: {
+        size: 28
+      },
+    },
+  },
 };
+
 
 const itemisedStatsToGraph = (itemised) => {
-  let readData = []
-  let addData = []
+  let readData = [];
+  let addedData = [];
+   let labels = [];
+
+
   for (let [day, entry] of Object.entries(itemised)) {
-    var dayStr = moment.unix(day).utc().format("Do MMM");
+    var dayStr = moment.unix(day).utc().format("DD MMM");
+    labels.push(dayStr);
     readData.push({x: dayStr, y: entry.articles_read});
-    addData.push({x: dayStr, y: entry.articles_added});
+    addedData.push({x: dayStr, y: entry.articles_added});
   }
 
-  return {read: readData, added: addData}
+  return {
+    labels,
+    datasets: [
+      {
+        label: 'Read',
+        data: readData,
+        backgroundColor: Theme.read,
+        borderColor: Theme.readBorder
+      },
+      {
+        label: 'Added',
+        data: addedData,
+        backgroundColor: Theme.added,
+        borderColor: Theme.addedBorder
+      }
+    ]
+  };
 }
 
 const Graph = ({itemised}) => {
   const graphData = itemisedStatsToGraph(itemised);
 
-  return(
-    <VictoryChart theme={VictoryTheme.material} height={170}>
-      <VictoryAxis style={axisStyle}/>
-      <VictoryAxis dependentAxis orientation="left" style={axisStyle}/>
-      <VictoryLegend
-        x={125} y={0}
-        title="Read vs Added articles"
-        orientation="horizontal"
-        gutter={10}
-        style={{
-          border: { stroke: Theme.border },
-          title: {fontSize: 7, fill: Theme.text},
-          labels: {fontSize: 7, fill: Theme.text}
-        }}
-        data={[
-          { name: "Read", symbol: { fill: Theme.green } },
-          { name: "Added", symbol: { fill: Theme.red } },
-        ]}
-      />
-      <VictoryLine data={graphData.read} style={{ data: { stroke: Theme.green } }} />
-      <VictoryScatter
-        data={graphData.read}
-        size={3}
-        style={{data: { fill: Theme.green }, labels: { fill: Theme.text, fontSize: 4}}}
-        labels={({ datum }) => datum.y}
-        labelComponent={<VictoryLabel dy={2}/>}
-      />
-      <VictoryLine data={graphData.added} style={{ data: { stroke: Theme.red }}}/>
-      <VictoryScatter
-        data={graphData.added}
-        size={3}
-        style={{data: { fill: Theme.red }, labels: { fill: "white", fontSize: 4}}}
-        labels={({ datum }) => datum.y}
-        labelComponent={<VictoryLabel dy={2}/>}
-        />
-    </VictoryChart>
-  )
+  return <Line options={options} data={graphData}/>;
 }
 
 export default Graph;
