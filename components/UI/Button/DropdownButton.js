@@ -8,7 +8,7 @@ const DropdownButton = ({state, onSelected}) => {
     return (
       <div className="list-dropdown">
         <div className="btn-group">
-          <button className="btn-primary btn-small btn-dropdown" style={{ "marginTop": "0.2rem" }}>
+          <button className="btn-primary btn-small btn-dropdown" style={{ "marginTop": "0.2rem", "marginBottom": "1.5rem" }}>
             <i className="fa fa-wrapper fa-clock pr-1"></i>
             <i className="fa fa-wrapper fa-caret-down" aria-hidden="true"></i>
           </button>

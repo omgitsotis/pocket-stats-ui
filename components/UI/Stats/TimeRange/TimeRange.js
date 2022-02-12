@@ -24,7 +24,7 @@ const AbsoluteTimeRange = ({startDate, endDate, onDateChanged}) => {
 	return (
 		<div className="col-11">
 			<div className="row p-0 ml-2 level">
-				<div style={{ "width": "46%" }}>
+				<div className='col-md-5 col-xs-12'>
 					<input
 							type="date"
 							style={{ "paddingTop": "0.5rem", "paddingBottom": "0.5rem" }}
@@ -33,12 +33,12 @@ const AbsoluteTimeRange = ({startDate, endDate, onDateChanged}) => {
 							onBlur={(e) => onDateChanged("start", state.startDate)}
 					/>
 				</div>
-				<div style={{ "width": "3%" }}>
+				<div className='col-md-1 col-xs-12' style={{width: '4%'}}>
 					<span class="icon subtitle" style={{ "fontSize": "28px", "color": "black" }}>
 							<i class="fa-wrapper fa fa-long-arrow-alt-right"></i>
 					</span>
 				</div>
-				<div style={{ "width": "46%" }}>
+				<div className='col-md-5 col-xs-12'>
 					<input
 							type="date"
 							style={{ "paddingTop": "0.5rem", "paddingBottom": "0.5rem" }}
