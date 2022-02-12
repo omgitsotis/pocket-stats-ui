@@ -29,7 +29,7 @@ class MyDocument extends Document {
           <meta http-equiv="X-UA-Compatible" content="IE=edge;" />
           <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700" rel="stylesheet" />
           <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" />
-          <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous" />
+         <script src="https://kit.fontawesome.com/ad19c7bae5.js" crossorigin="anonymous"></script>
           <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
           <style dangerouslySetInnerHTML={globalStyle} />
         </Head>

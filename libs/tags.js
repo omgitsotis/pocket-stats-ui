@@ -43,7 +43,7 @@ export const tagToIcon = (tag) => {
     case "life":
       return "fa-users"
     case "media":
-      return "fa-hashtag"
+      return "fa-medium"
     case "movie":
       return "fa-film"    
     case "mma":
@@ -64,6 +64,8 @@ export const tagToIcon = (tag) => {
       return "fa-flask"
     case "sex":
       return "fa-bed"
+    case "social media":
+      return "fa-hashtag"
     case "tech":
       return "fa-desktop"
     case "tennis":
@@ -75,7 +77,7 @@ export const tagToIcon = (tag) => {
     case "wrestling":
       return "fa-hat-cowboy"
     default:
-      break;
+      return "fa-question"
   }
 }
 
@@ -112,6 +114,7 @@ export const TagList = [
   "pop culture",
   "science",
   "sex",
+  "social media",
   "tech",
   "tennis",
   "tv",

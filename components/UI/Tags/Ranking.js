@@ -19,12 +19,12 @@ const TagRanking = ({data, type}) => {
   if (typeof(items[0]) !== "undefined") {
     firstTag = (
       <div className="row text-yellow-400">
-        <div className="col-4">
+        <div className="col-md-4 col-xs-6">
           <div className="icon subtitle tooltip" data-tooltip={items[0].tag} style={{ "fontSize": "3rem" }}>
             <i className={clsx("fa-wrapper fa my-2", tagToIcon(items[0].tag))}></i>
           </div>
         </div>
-        <div className="col-8">
+        <div className="col-md-8 col-xs-6">
           <h1>{items[0].value}</h1>
         </div>
       </div>
@@ -34,12 +34,12 @@ const TagRanking = ({data, type}) => {
   if (typeof(items[1]) !== "undefined") {
     secondTag = (
       <div className="row text-gray-400">
-        <div className="col-4">
+        <div className="col-md-4 col-xs-6">
           <div class="icon subtitle tooltip" data-tooltip={items[1].tag} style={{ "fontSize": "2.5rem" }}>
             <i class={clsx("fa-wrapper fa my-2", tagToIcon(items[1].tag))}></i>
           </div>
         </div>
-        <div className="col-8">
+        <div className="col-md-8 col-xs-6">
           <h3>{items[1].value}</h3>
         </div>
       </div>
@@ -49,12 +49,12 @@ const TagRanking = ({data, type}) => {
   if (typeof(items[2]) !== "undefined") {
     thirdTag = (
       <div className="row text-yellow-700">
-        <div className="col-4">
+        <div className="col-md-4 col-xs-6">
           <div class="icon subtitle tooltip" data-tooltip={items[2].tag} style={{ "fontSize": "2rem" }}>
             <i class={clsx("fa-wrapper fa my-2", tagToIcon(items[2].tag))}></i>
           </div>
         </div>
-        <div className="col-8">
+        <div className="col-md-8 col-xs-6">
           <h4>{items[2].value}</h4>
         </div>
       </div>
@@ -64,12 +64,12 @@ const TagRanking = ({data, type}) => {
   if (typeof(items[3]) !== "undefined") {
     fourthTag = (
       <div className="row">
-        <div className="col-4">
+        <div className="col-md-4 col-xs-6">
           <div class="icon subtitle tooltip" data-tooltip={items[3].tag} style={{ "fontSize": "1.5rem" }}>
             <i class={clsx("fa-wrapper fa my-2", tagToIcon(items[3].tag))}></i>
           </div>
         </div>
-        <div className="col-8">
+        <div className="col-md-8 col-xs-6">
           <h5>{items[3].value}</h5>
         </div>
       </div>
@@ -79,12 +79,12 @@ const TagRanking = ({data, type}) => {
   if (typeof(items[4]) !== "undefined") {
     fifthTag = (
       <div className="row">
-        <div className="col-4">
+        <div className="col-md-4 col-xs-6">
           <div className="icon subtitle tooltip" data-tooltip={items[4].tag} style={{ "fontSize": "1.5rem" }}>
             <i className={clsx("fa-wrapper fa my-2", tagToIcon(items[4].tag))}></i>
           </div>
         </div>
-        <div className="col-8">
+        <div className="col-md-8 col-xs-6">
           <h5>{items[4].value}</h5>
         </div>
       </div>

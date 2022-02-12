@@ -124,12 +124,18 @@ class Home extends React.Component {
 
     if (this.state.hasData) {
       body = (
-        <div className= "row">
-          <div className="col-12">
-            <Statcards totals={this.state.data.totals} />
-            <Graph itemised={this.state.data.itemised} />
+        <React.Fragment>
+          <div className= "row">
+            <div className="col-12">
+              <Statcards totals={this.state.data.totals} />
+            </div>
           </div>
-        </div>
+          <div className= "row">
+            <div className="col-12">
+              <Graph itemised={this.state.data.itemised} />
+            </div>
+          </div>
+        </React.Fragment>
       )
 
     }
@@ -146,10 +152,10 @@ class Home extends React.Component {
               <div className="frame">
                 <div className="frame__body" style={{"overflow":"hidden"}}>
                   <div className="row p-0 level">
-                    <div className="col-10">
-                      <h2 className="headline-4">Home</h2>
+                    <div className="col-xs-9 col-10">
+                      <h3 className="headline-4">Home</h3>
                     </div>
-                    <div className="col-2">
+                    <div className="col-xs-3 col-2">
                       <UpdateButton onClick={() => this.onUpdatedClicked()} loading={this.state.loading}/>
                     </div>
                   </div>
